@@ -117,10 +117,6 @@ cloudinary.config(
     api_secret=os.environ.get('CLOUDINARY_API_SECRET'),
 )
 
-print(os.environ.get('CLOUDINARY_CLOUD_NAME'))
-print(os.environ.get('CLOUDINARY_API_KEY'))
-print(os.environ.get('CLOUDINARY_API_SECRET'))
-
 LOGGING = {
     'version': 1,
     'filters': {
