@@ -10,10 +10,16 @@
                 {% include 'partials/search_form.html' %}
             {% endif %}
             <ul>
-                {% for object in people %}
+                {% for object in page_obj %}
                     <li>
                         <p><img class="alignleft" src="{% static 'images/heart.jpg' %}" alt="heart image"/>
-                            <img class="alignright" width="100" src="{{ object.profile_picture }}" alt="heart image"/>
+                            {% if object.profile_picture.url %}
+                                <img class="alignright" width="100" src="{{ object.profile_picture.url }}"
+                                     alt="profile picture"/>
+                            {% else %}
+                                <img class="alignright" width="100" src="{% static 'images/admin.png' %}"
+                                     alt="profile picture"/>
+                            {% endif %}
                             {% if object.get_full_name %}
                                 Person's Name: {{ object.get_full_name }}</p>
                             {% endif %}
@@ -31,6 +37,23 @@
                     </li>
                 {% endfor %}
             </ul>
+        </div>
+        <div class="pagination">
+            <span class="step-links">
+                {% if page_obj.has_previous %}
+                    <a href="?page=1">&laquo; first</a>
+                    <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+                {% endif %}
+
+                <span class="current">
+                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                </span>
+
+                {% if page_obj.has_next %}
+                    <a href="?page={{ page_obj.next_page_number }}">next</a>
+                    <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+                {% endif %}
+            </span>
         </div>
         <!-- end left side -->
         {% if user.is_authenticated %}

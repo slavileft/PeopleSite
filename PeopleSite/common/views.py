@@ -1,3 +1,4 @@
+from django.core.paginator import Paginator
 from django.db.models import Q
 from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
@@ -34,13 +35,19 @@ def index(request):
             Q(age__gte=age_pattern_lower) & Q(age__lte=age_pattern_higher) & Q(gender=gender_pattern)
             )
 
+    paginator = Paginator(people, 3)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
     context = {
-        'people': people,
+        'page_obj': page_obj,
         'search_form': search_form,
     }
 
-    return render(request,'index.html',context,)
+    return render(request,'index.html',context)
 
+def about_view(request):
+    return render(request, 'about.html')
 
 @login_required
 def like_photo(request, photo_id):

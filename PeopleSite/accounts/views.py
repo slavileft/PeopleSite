@@ -57,7 +57,7 @@ class UserEditView(LoginRequiredMixin, views.UpdateView):
         'eyes_color',
         'hair_color',
         'profile_picture',
-        'gender'
+        'gender',
     )
 
     def get_success_url(self):

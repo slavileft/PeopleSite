@@ -1,65 +1,38 @@
-from enum import Enum
-
+from cloudinary import models as cloudinary_models
 from django.contrib.auth.models import AbstractUser
 from django.core.validators import MinLengthValidator, MinValueValidator
 from django.db import models
 
+from PeopleSite.accounts.utils import EyesColor, HairColor, Gender
 from PeopleSite.accounts.validators import is_alphabetical
 
 
-class ChoicesEnumMixin:
-    @classmethod
-    def choices(cls):
-        return [(x.name, x.value) for x in cls]
-
-    @classmethod
-    def max_value(cls):
-        return max(len(name) for name, value in cls.choices())
-
-
-class Gender(ChoicesEnumMixin, Enum):
-    male = 'Male'
-    female = 'Female'
-    do_not_show = 'Do not show'
-
-
-class EyesColor(ChoicesEnumMixin, Enum):
-    black = 'Black'
-    brown = 'Brown'
-    blue = 'Blue'
-    green = 'Green'
-    hazel = 'Hazel'
-    amber = 'Amber'
-    grey = 'Grey'
-
-
-class HairColor(ChoicesEnumMixin, Enum):
-    black = 'Black'
-    brown = 'Brown'
-    red = 'Red'
-    blond = 'Blond'
-    grey = 'Grey'
-    white = 'White'
-
 class DdUser(AbstractUser):
+    MIN_FIRST_NAME_LENGTH = 2
+    MAX_FIRST_NAME_LENGTH = 30
+    MIN_LAST_NAME_LENGTH = 2
+    MAX_LAST_NAME_LENGTH = 30
+    MIN_AGE = 18
+    MIN_HEIGHT = 0
+    MIN_WEIGHT = 0
     email = models.EmailField(
         unique=True,
         null=False,
         blank=False,
     )
     first_name = models.CharField(
-        max_length=30,
+        max_length=MAX_FIRST_NAME_LENGTH,
         validators=(
-            MinLengthValidator(2),
+            MinLengthValidator(MIN_FIRST_NAME_LENGTH),
             is_alphabetical,
         ),
         null=True,
         blank=False,
     )
     last_name = models.CharField(
-        max_length=30,
+        max_length=MAX_LAST_NAME_LENGTH,
         validators=(
-            MinLengthValidator(2),
+            MinLengthValidator(MIN_LAST_NAME_LENGTH),
             is_alphabetical,
         ),
         null=True,
@@ -67,21 +40,21 @@ class DdUser(AbstractUser):
     )
     age = models.PositiveIntegerField(
         validators=(
-            MinValueValidator(18),
+            MinValueValidator(MIN_AGE),
         ),
         null=True,
         blank=False,
     )
     height = models.FloatField(
         validators=(
-            MinValueValidator(0),
+            MinValueValidator(MIN_HEIGHT),
         ),
         null=True,
         blank=True,
     )
     weight = models.FloatField(
         validators=(
-            MinValueValidator(0),
+            MinValueValidator(MIN_WEIGHT),
         ),
         null=True,
         blank=True,
@@ -98,9 +71,8 @@ class DdUser(AbstractUser):
         null=True,
         blank=True,
     )
-    # TODO change to cloudinary picture
-    profile_picture = models.URLField(
-        null=True,
+    profile_picture = cloudinary_models.CloudinaryField(
+        null=False,
         blank=True,
     )
     gender = models.CharField(

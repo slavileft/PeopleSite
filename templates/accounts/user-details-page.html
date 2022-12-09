@@ -8,10 +8,10 @@
             <h1>Profile Details</h1>
             <p>Pictures:</p>
             <div>
-                {% for picture in object.photo_set.all %}
-                    <img width="200" src="{{ picture.photo.url }}" alt="{{ picture.pk }}">
+                {% for object in object.photo_set.all %}
+                    <img width="200" src="{{ object.photo.url }}" alt="{{ object.pk }}">
                     <div>
-                        <a href="{% url 'photo details' pk=picture.pk %}">View Photo</a>
+                        <a href="{% url 'photo details' pk=object.pk %}">View Photo</a>
                     </div>
                 {% endfor %}
             </div>
