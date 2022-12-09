@@ -1,15 +1,10 @@
 from enum import Enum
 
 from django.contrib.auth.models import AbstractUser
-from django.core.exceptions import ValidationError
 from django.core.validators import MinLengthValidator, MinValueValidator
 from django.db import models
 
-
-def is_alphabetical(value):
-    for ch in value:
-        if not ch.isalpha():
-            raise ValidationError('Only letters are allowed')
+from PeopleSite.accounts.validators import is_alphabetical
 
 
 class ChoicesEnumMixin:
@@ -37,6 +32,14 @@ class EyesColor(ChoicesEnumMixin, Enum):
     amber = 'Amber'
     grey = 'Grey'
 
+
+class HairColor(ChoicesEnumMixin, Enum):
+    black = 'Black'
+    brown = 'Brown'
+    red = 'Red'
+    blond = 'Blond'
+    grey = 'Grey'
+    white = 'White'
 
 class DdUser(AbstractUser):
     email = models.EmailField(
@@ -89,9 +92,9 @@ class DdUser(AbstractUser):
         null=True,
         blank=True,
     )
-    # TODO make enum for hair_color
     hair_color = models.CharField(
-        max_length=20,
+        max_length=HairColor.max_value(),
+        choices=HairColor.choices(),
         null=True,
         blank=True,
     )

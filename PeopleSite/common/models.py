@@ -25,44 +25,12 @@ class PhotoComment(models.Model):
         null=False,
         blank=True,
     )
-
     person = models.ForeignKey(
         UserModel,
         on_delete=models.CASCADE,
         null=False,
         blank=True,
     )
-
-# TODO delete MessagePerson model
-class MessagePerson(models.Model):
-    MAX_MESSAGE_LENGTH = 300
-    message = models.CharField(
-        max_length=MAX_MESSAGE_LENGTH,
-        null=False,
-        blank=False,
-    )
-    publication_date_and_time = models.DateTimeField(
-        auto_now_add=True,
-        blank=True,
-        null=False,
-    )
-
-    person = models.ForeignKey(
-        UserModel,
-        on_delete=models.CASCADE,
-        null=False,
-        blank=True,
-    )
-
-# TODO delete or implement LikeUser model
-class LikeUser(models.Model):
-    person = models.ForeignKey(
-        UserModel,
-        on_delete=models.CASCADE,
-        null=False,
-        blank=True,
-    )
-
 
 class PhotoLike(models.Model):
     photo = models.ForeignKey(
@@ -75,4 +43,6 @@ class PhotoLike(models.Model):
     user = models.ForeignKey(
         UserModel,
         on_delete=models.CASCADE,
+        null=False,
+        blank=True,
     )

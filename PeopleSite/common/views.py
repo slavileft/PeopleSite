@@ -2,11 +2,9 @@ from django.db.models import Q
 from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect, render
-from django.urls import reverse
-from django.views import generic as views
 
-from PeopleSite.common.forms import PhotoCommentForm, MessageCreateForm, SearchForm
-from PeopleSite.common.models import PhotoLike, MessagePerson
+from PeopleSite.common.forms import PhotoCommentForm, SearchForm
+from PeopleSite.common.models import PhotoLike
 from PeopleSite.photos.models import Photo
 
 UserModel = get_user_model()

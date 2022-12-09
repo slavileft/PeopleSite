@@ -1,3 +1,13 @@
 from django.contrib import admin
 
-# Register your models here.
+from PeopleSite.chat.models import ThreadModel, MessageModel
+
+
+@admin.register(ThreadModel)
+class ThreadModelAdmin(admin.ModelAdmin):
+    pass
+
+
+@admin.register(MessageModel)
+class MessageModelAdmin(admin.ModelAdmin):
+    pass

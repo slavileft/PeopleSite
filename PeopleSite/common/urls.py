@@ -1,4 +1,4 @@
-from django.urls import path, include
+from django.urls import path
 
 from PeopleSite.common.views import index, like_photo, comment_photo
 
