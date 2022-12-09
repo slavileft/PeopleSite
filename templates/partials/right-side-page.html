@@ -1,0 +1,18 @@
+<!-- begin right side -->
+<div id="right">
+    <h1>My Profile</h1>
+    <p>Person's name: {{ request.user.first_name }} {{ request.user.last_name }}</p>
+    <p>Age: {{ request.user.age }} years old</p>
+    <p>Height: {{ request.user.height|floatformat:2 }} cm</p>
+    <p>Weight: {{ request.user.weight }} kg</p>
+    <p>Eyes color: {{ request.user.eyes_color }}</p>
+    <p>Hair color: {{ request.user.hair_color }}</p>
+    <p>Sex: {{ request.user.gender }}</p>
+    <a href="{% url 'user details' pk=request.user.pk %}">
+        <i><u>View Profile</u></i>
+    </a>
+    <a href="{% url 'user edit' pk=request.user.pk %}">
+        <i>Edit Profile</i>
+    </a>
+</div>
+<!-- end right side -->

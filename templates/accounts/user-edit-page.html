@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block page_content %}
+    <!-- start container -->
+    <div id="container">
+        <!-- begin left side -->
+        <div id="left">
+            <h1>Edit Profile</h1>
+
+            <form method="post" action="{% url 'user edit' pk=object.pk %}">
+                {{ form.as_p }}
+                <button type="submit">Edit</button>
+                {% csrf_token %}
+            </form>
+            <a href="{% url 'user delete' pk=object.pk %}"><b>Delete Profile</b></a>
+        </div>
+        <!-- end left side -->
+        {% include 'partials/right-side-page.html' %}
+    </div>
+    <!-- end container -->
+{% endblock %}

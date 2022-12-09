@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block page_content %}
+    <!-- start container -->
+    <div id="container">
+        <!-- begin left side -->
+        <div id="left">
+            <h1>Delete photo</h1>
+
+            <form method="post" action="{% url 'photo delete' pk=object.pk %}">
+                {{ form.as_p }}
+                <button type="submit">Delete</button>
+                {% csrf_token %}
+            </form>
+        </div>
+        <!-- end left side -->
+        {% include 'partials/right-side-page.html' %}
+    </div>
+    <!-- end container -->
+{% endblock %}

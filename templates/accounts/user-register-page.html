@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block page_content %}
+    <!-- start container -->
+    <div id="container">
+        <!-- begin left side -->
+        <div id="left">
+            <h1>Accounts Register</h1>
+
+            <body>
+            <form method="post" action="{% url 'user register' %}">
+                <p>
+                    {{ form.username.label }}
+                    {{ form.username }}
+                </p>
+                <p>
+                    {{ form.email.label }}
+                    {{ form.email }}
+                </p>
+                <p>
+                    {{ form.first_name.label }}
+                    {{ form.first_name }}
+                </p>
+                <p>
+                    {{ form.last_name.label }}
+                    {{ form.last_name }}
+                </p>
+                <p>
+                    {{ form.age.label }}
+                    {{ form.age }}
+                </p>
+                <p>
+                    {{ form.gender.label }}
+                    {{ form.gender }}
+                </p>
+                <p>
+                    {{ form.password1.label }}
+                    {{ form.password1 }}
+                </p>
+                <p>
+                    {{ form.password2.label }}
+                    {{ form.password2 }}
+                </p>
+                <button type="submit">Register</button>
+                {% csrf_token %}
+            </form>
+            </body>
+        </div>
+        <!-- end left side -->
+        {% if user.is_authenticated %}
+            {% include 'partials/right-side-page.html' %}
+        {% endif %}
+    </div>
+    <!-- end container -->
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block page_content %}
+    <!-- start container -->
+    <div id="container">
+        <!-- begin left side -->
+        <div id="left">
+            <h1>LogIn</h1>
+
+            <body>
+            <form method="post" action="{% url 'user login' %}">
+                {{ form.as_div }}
+                <input type="hidden" name="next" value="{{ next }}">
+                <button type="submit">Log in</button>
+                {% csrf_token %}
+            </form>
+            </body>
+{% endblock %}

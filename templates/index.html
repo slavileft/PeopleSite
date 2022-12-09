@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block page_content %}
+    <!-- start container -->
+    <div id="container">
+        <!-- begin left side -->
+        <div id="left">
+            <h1>All profiles</h1>
+            {% if user.is_authenticated %}
+                {% include 'partials/search_form.html' %}
+            {% endif %}
+            <ul>
+                {% for object in people %}
+                    <li>
+                        <p><img class="alignleft" src="{% static 'images/heart.jpg' %}" alt="heart image"/>
+                            <img class="alignright" width="100" src="{{ object.profile_picture }}" alt="heart image"/>
+                            {% if object.get_full_name %}
+                                Person's Name: {{ object.get_full_name }}</p>
+                            {% endif %}
+                        {% if object.age %}
+                            <p>Age: {{ object.age }}</p>
+                        {% endif %}
+                        {% if object.gender %}
+                            <p>Sex: {{ object.gender }}</p>
+                        {% endif %}
+                        {% if request.user.is_authenticated %}
+                            <a href="{% url 'user details' pk=object.pk %}">
+                                <i>View Profile</i>
+                            </a>
+                        {% endif %}
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+        <!-- end left side -->
+        {% if user.is_authenticated %}
+            {% include 'partials/right-side-page.html' %}
+        {% endif %}
+    </div>
+    <!-- end container -->
+{% endblock %}
+

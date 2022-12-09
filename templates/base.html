@@ -1,0 +1,40 @@
+{% load static %}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>People site</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"/>
+    <link href="{% static 'style.css' %}" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<!-- begin header -->
+<div id="header">
+    <h1>People site</h1>
+    <p>For one is both <br/>
+        <span>and both are one in love</span></p>
+    <ul>
+        <li><a href="{% url 'index' %}">Home</a></li>
+        {% if request.user.is_authenticated %}
+            <li class="nav-item inbox-icon-container">
+                <a href="{% url 'inbox' %}" class="inbox-icon">Messages</a>
+            </li>
+            <li><a href="{% url 'user logout' %}">Logout</a></li>
+        {% else %}
+            <li><a href="{% url 'user register' %}">Register</a></li>
+            <li><a href="{% url 'user login' %}">Log in</a></li>
+        {% endif %}
+    </ul>
+</div>
+<!-- end header -->
+
+{% block page_content %}
+{% endblock %}
+
+<!-- begin footer -->
+<div id="footer">
+    <p>People site by <a href="https://github.com/slavileft">Stanislav Lefterov</a></p>
+</div>
+<!-- end footer -->
+</body>
+</html>

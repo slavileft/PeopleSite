@@ -1,0 +1,18 @@
+<div>
+    <form action="{% url 'index' %}" method="get">
+        <p>
+            {{ search_form.age_lower.label }}
+            {{ search_form.age_lower }}
+            {{ search_form.age_higher.label }}
+            {{ search_form.age_higher }}
+        </p>
+        <p>
+            {{ search_form.gender.label }}
+            {{ search_form.gender }}
+        </p>
+        <p align="right">
+            <button>Search Profiles</button> <a href="{% url 'index' %}">Clear filter</a>
+        </p>
+        {% csrf_token %}
+    </form>
+</div>

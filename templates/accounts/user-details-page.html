@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block page_content %}
+    <!-- start container -->
+    <div id="container">
+        <!-- begin left side -->
+        <div id="left">
+            <h1>Profile Details</h1>
+            <p>Pictures:</p>
+            <div>
+                {% for picture in object.photo_set.all %}
+                    <img width="200" src="{{ picture.photo.url }}" alt="{{ picture.pk }}">
+                    <div>
+                        <a href="{% url 'photo details' pk=picture.pk %}">View Photo</a>
+                    </div>
+                {% endfor %}
+            </div>
+            {% if is_owner %}
+                <p align="right">
+                    <a href="{% url 'photo add' %}">Add photo</a>
+                </p>
+            {% endif %}
+            {% if object.get_full_name %}
+                <p>Person's name: {{ object.get_full_name }}</p>
+            {% endif %}
+            {% if object.age %}
+                <p>Age: {{ object.age }} years old</p>
+            {% endif %}
+            {% if object.height %}
+                <p>Height: {{ object.height|floatformat:2 }} cm</p>
+            {% endif %}
+            {% if object.weight %}
+                <p>Weight: {{ object.weight }} kg</p>
+            {% endif %}
+            {% if object.eyes_color %}
+                <p>Eyes color: {{ object.eyes_color }}</p>
+            {% endif %}
+            {% if object.hair_color %}
+                <p>Hair color: {{ object.hair_color }}</p>
+            {% endif %}
+            {% if object.gender %}
+                <p>Sex: {{ object.gender }}</p>
+            {% endif %}
+            {% if is_owner %}
+                <a href="{% url 'user edit' pk=object.pk %}"><i>Edit Profile</i></a>
+                <a href="{% url 'user delete' pk=object.pk %}"><b>Delete profile</b></a>
+            {% else %}
+                <div class="col-md-12 p-5">
+                    <form method="POST" action="{% url 'create-thread' pk=object.pk %}">
+                        {{ thread_form.username }}
+                        <button class="btn btn-light p-3" type="submit">Start a Conversation</button>
+                        {% csrf_token %}
+                    </form>
+                </div>
+            {% endif %}
+        </div>
+        <!-- end left side -->
+        {% include 'partials/right-side-page.html' %}
+    </div>
+    <!-- end container -->
+{% endblock %}
