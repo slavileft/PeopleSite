@@ -51,14 +51,14 @@ def about_view(request):
 
 @login_required
 def like_photo(request, photo_id):
-    user_liked_photos = PhotoLike.objects.filter(photo_id=photo_id, user_id=request.user.pk)
+    user_liked_photos = PhotoLike.objects.filter(photo_id=photo_id, person_id=request.user.pk)
 
     if user_liked_photos:
         user_liked_photos.delete()
     else:
         PhotoLike.objects.create(
             photo_id=photo_id,
-            user_id=request.user.pk,
+            person_id=request.user.pk,
         )
 
     return redirect('photo details', pk=photo_id)

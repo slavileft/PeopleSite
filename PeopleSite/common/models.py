@@ -39,8 +39,7 @@ class PhotoLike(models.Model):
         null=False,
         blank=True,
     )
-    # TODO rename user to person
-    user = models.ForeignKey(
+    person = models.ForeignKey(
         UserModel,
         on_delete=models.CASCADE,
         null=False,

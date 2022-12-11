@@ -30,7 +30,7 @@ class PhotoDetailsView(LoginRequiredMixin, views.DetailView):
         context['is_owner'] = self.request.user == self.object.person
         context['comment_form'] = PhotoCommentForm()
         context['likes_count'] = self.object.photolike_set.count()
-        context['has_user_liked_photo'] = PhotoLike.objects.filter(photo_id=self.object.pk, user_id=self.request.user.pk)
+        context['has_user_liked_photo'] = PhotoLike.objects.filter(photo_id=self.object.pk, person_id=self.request.user.pk)
 
         return context
 
