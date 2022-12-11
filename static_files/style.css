@@ -36,3 +36,12 @@ body { background:#fff; font:90% Verdana, "Trebuchet MS", sans-serif; color:#666
 #footer { margin:20px auto 5px auto; width:760px; background-color: #fff }
 #footer:after { clear:both; content:'.'; display:block; height:0; visibility:hidden; } 
 #footer p { border-top: 1px dotted #EA2C30; color:#555; font-size:90%; line-height:20px; padding: 5px; text-align:center; font-size: 0.75em; }
+
+.row {
+  display: flex;
+}
+
+.column {
+  flex: 33.33%;
+  padding: 3px;
+}
