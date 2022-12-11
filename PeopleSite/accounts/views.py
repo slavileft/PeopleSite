@@ -1,6 +1,7 @@
 from django.contrib.auth import get_user_model, login
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView, LogoutView
+from django.core.paginator import Paginator
 from django.urls import reverse_lazy
 from django.views import generic as views
 
@@ -34,12 +35,18 @@ class UserLogoutView(LogoutView):
 class UserDetailsView(LoginRequiredMixin, views.DetailView):
     template_name = 'accounts/user-details-page.html'
     model = UserModel
+    photos_paginate_by = 3
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        photos = self.object.photo_set.all()
+        paginator = Paginator(photos, self.photos_paginate_by)
+        page_number = self.request.GET.get('page')
+        page_obj = paginator.get_page(page_number)
 
         context['is_owner'] = self.request.user == self.object
         context['thread_form'] = ThreadForm(self.request.POST)
+        context['page_obj'] = page_obj
 
         return context
 
