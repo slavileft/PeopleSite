@@ -1,10 +1,8 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block page_content %}
-    <!-- start container -->
     <div id="container">
-        <!-- begin left side -->
-        <div id="left">
+        <div id="whole">
             <h1>LogIn</h1>
 
             <body>
@@ -15,4 +13,6 @@
                 {% csrf_token %}
             </form>
             </body>
+        </div>
+    </div>
 {% endblock %}

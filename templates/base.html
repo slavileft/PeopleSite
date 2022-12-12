@@ -15,6 +15,7 @@
         <span>and both are one in love</span></p>
     <ul>
         <li><a href="{% url 'index' %}">Home</a></li>
+        <li><a href="{% url 'about' %}">About</a></li>
         {% if request.user.is_authenticated %}
             <li class="nav-item inbox-icon-container">
                 <a href="{% url 'inbox' %}" class="inbox-icon">Messages</a>
@@ -33,7 +34,6 @@
 
 <!-- begin footer -->
 <div id="footer">
-    <p><a href="{% url 'about' %}">About</a></p>
     <p>&COPY; People site by <a href="https://github.com/slavileft">Stanislav Lefterov</a></p>
 </div>
 <!-- end footer -->

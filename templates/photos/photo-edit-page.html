@@ -1,22 +1,17 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block page_content %}
-    <!-- start container -->
     <div id="container">
-        <!-- begin left side -->
         <div id="left">
             <h1>Edit photo</h1>
-
+            <img width="500" src="{{ object.photo.url }}" alt="photo {{ object.pk }}">
             <form action="{% url 'photo edit' pk=object.pk %}" method="post">
-                {{ form }}
-                <button type="submit">
-                    Edit
-                </button>
+                {{ form.as_p }}
+                <button type="submit">Edit</button>
                 {% csrf_token %}
             </form>
+            <a href="{% url 'photo details' pk=object.pk %}">Back</a>
         </div>
-        <!-- end left side -->
         {% include 'partials/right-side-page.html' %}
     </div>
-    <!-- end container -->
 {% endblock %}

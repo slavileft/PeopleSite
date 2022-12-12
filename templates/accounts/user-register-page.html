@@ -3,8 +3,7 @@
 {% block page_content %}
     <!-- start container -->
     <div id="container">
-        <!-- begin left side -->
-        <div id="left">
+        <div id="whole">
             <h1>Accounts Register</h1>
 
             <body>
@@ -46,10 +45,6 @@
             </form>
             </body>
         </div>
-        <!-- end left side -->
-        {% if user.is_authenticated %}
-            {% include 'partials/right-side-page.html' %}
-        {% endif %}
     </div>
     <!-- end container -->
 {% endblock %}

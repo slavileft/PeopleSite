@@ -1,24 +1,20 @@
 {% extends 'base.html' %}
 {% block page_content %}
-    <!-- start container -->
     <div id="container">
-        <!-- begin left side -->
         <div id="left">
-            <div class="row">
-                <div class="card col-md-12 mt-5 p-3 shadow-sm">
-                    <h5>@{{ thread.receiver }}</h5>
-                </div>
-            </div>
+            {% if thread.receiver == request.user %}
+                <h1>@{{ thread.user }}</h1>
+            {% else %}
+                <h1>@{{ thread.receiver }}</h1>
+            {% endif %}
             {% if message_list.all.count == 0 %}
-                <div class="row my-5">
-                    <div class="col-md-12">
-                        <p class="empty-text">No Messages</p>
-                    </div>
+                <div>
+                    <p class="empty-text">No Messages</p>
                 </div>
             {% endif %}
             {% for message in message_list %}
                 <div class="row">
-                    <div class="col-md-12 my-1">
+                    <div>
                         {% if message.sender_user == request.user %}
                             <div class="sent-message my-3">
                                 <p>{{ message.body }}</p>
@@ -33,7 +29,7 @@
             {% endfor %}
             <div class="row">
                 <div class="card col-md-12 p-3 shadow-sm">
-                    <form method="POST" action="{% url 'create-message' thread.pk %}" >
+                    <form method="POST" action="{% url 'create-message' thread.pk %}">
                         {% csrf_token %}
                         {{ form }}
                         <div class="d-grid gap-2 mt-3">
@@ -43,5 +39,6 @@
                 </div>
             </div>
         </div>
+    </div>
     {% include 'partials/right-side-page.html' %}
 {% endblock page_content %}

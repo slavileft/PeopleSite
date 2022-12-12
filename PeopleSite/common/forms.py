@@ -24,6 +24,6 @@ class PhotoCommentForm(forms.ModelForm):
 
 
 class SearchForm(forms.Form):
-    age_lower = forms.IntegerField(required=False)
-    age_higher = forms.IntegerField(required=False)
+    age_lower = forms.IntegerField(required=False, label='Search people from age: ')
+    age_higher = forms.IntegerField(required=False, label='Search people to age: ')
     gender = forms.ChoiceField(choices=GENDER_EMPTY, required=False)

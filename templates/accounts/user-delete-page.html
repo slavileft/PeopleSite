@@ -1,23 +1,20 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block page_content %}
-    <!-- start container -->
     <div id="container">
-        <!-- begin left side -->
         <div id="left">
             <h1>Delete Profile</h1>
             <h2> Are you sure you want to delete your profile?</h2>
-            <form method="post" action="{% url 'user delete' pk=object.pk %}">
+            <p></p>
+            <form class="delete-form" method="post" action="{% url 'user delete' pk=object.pk %}">
                 {{ form }}
-                <p class="deleteUser">
-                    <button type="submit">Yes</button>
-                    <a href="{% url 'index' %}">No</a>
-                </p>
+                <button id="yes-button" type="submit">Yes</button>
                 {% csrf_token %}
             </form>
+            <form class="delete-form" action="{% url 'index' %}">
+                <input id="no-button" type="submit" value="No"/>
+            </form>
         </div>
-        <!-- end left side -->
         {% include 'partials/right-side-page.html' %}
     </div>
-    <!-- end container -->
 {% endblock %}

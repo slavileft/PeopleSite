@@ -1,29 +1,34 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block page_content %}
-    <!-- start container -->
     <div id="container">
-        <!-- begin left side -->
-        <div id="left">
-            <div class="row">
-                <div class="col-md-12 p-5">
-                    <h3>Your Conversations</h3>
-                </div>
-            </div>
-            {% for thread in threads.all %}
-                {% if thread.receiver == request.user %}
-                    <div class="row mb-3">
-                        <div class="card col-md-12 p-5 shadow-sm">
+        <div id="whole">
+            <h1>Your Conversations</h1>
+            <p>
+                {% for thread in threads.all %}
+                    <p>
+                        {% if thread.receiver == request.user %}
+                            {% if thread.user.profile_picture %}
+                                <img width="50" src="{{ thread.user.profile_picture.url }}"
+                                     alt="photo of {{ thread.user.pk }}">
+                            {% else %}
+                                <img width="50" src="{% static 'images/admin.png' %}"
+                                     alt="photo of {{ thread.user.pk }}">
+                            {% endif %}
                             <a href="{% url 'thread' thread.pk %}">{{ thread.user }}</a>
-                        </div>
-                    </div>
-                {% else %}
-                    <div class="row mb-3">
-                        <div class="card col-md-12 p-5 shadow-sm">
+                        {% else %}
+                            {% if thread.receiver.profile_picture %}
+                                <img width="50" src="{{ thread.receiver.profile_picture.url }}"
+                                     alt="photo of {{ thread.receiver.pk }}">
+                            {% else %}
+                                <img width="50" src="{% static 'images/admin.png' %}"
+                                     alt="photo of {{ thread.user.pk }}">
+                            {% endif %}
                             <a href="{% url 'thread' thread.pk %}">{{ thread.receiver }}</a>
-                        </div>
-                    </div>
-                {% endif %}
-            {% endfor %}
+                        {% endif %}
+                    </p>
+                {% endfor %}
+            </p>
         </div>
-    {% include 'partials/right-side-page.html' %}
+    </div>
 {% endblock page_content %}
