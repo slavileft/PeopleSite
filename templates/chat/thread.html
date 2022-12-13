@@ -7,6 +7,7 @@
             {% else %}
                 <h1>@{{ thread.receiver }}</h1>
             {% endif %}
+            <p></p>
             {% if message_list.all.count == 0 %}
                 <div>
                     <p class="empty-text">No Messages</p>
@@ -14,31 +15,30 @@
             {% endif %}
             {% for message in message_list %}
                 <div class="row">
-                    <div>
-                        {% if message.sender_user == request.user %}
-                            <div class="sent-message my-3">
-                                <p>{{ message.body }}</p>
+                    {% if message.sender_user == request.user %}
+                        <div class="message-row">
+                            <div class="sent-message">
+                                {{ message.body }}
                             </div>
-                        {% elif message.receiver_user == request.user %}
-                            <div class="received-message my-3">
-                                <p>{{ message.body }}</p>
+                        </div>
+                    {% elif message.receiver_user == request.user %}
+                        <div class="message-row">
+                            <div class="received-message">
+                                {{ message.body }}
                             </div>
-                        {% endif %}
-                    </div>
+                        </div>
+                    {% endif %}
                 </div>
             {% endfor %}
-            <div class="row">
-                <div class="card col-md-12 p-3 shadow-sm">
-                    <form method="POST" action="{% url 'create-message' thread.pk %}">
-                        {% csrf_token %}
-                        {{ form }}
-                        <div class="d-grid gap-2 mt-3">
-                            <button class="btn btn-light" type="submit">Send Message</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
+            <p></p>
+            <form method="POST" action="{% url 'create-message' thread.pk %}">
+                {% csrf_token %}
+                {{ form }}
+                <p>
+                    <button type="submit">Send Message</button>
+                </p>
+            </form>
         </div>
+        {% include 'partials/right-side-page.html' %}
     </div>
-    {% include 'partials/right-side-page.html' %}
 {% endblock page_content %}

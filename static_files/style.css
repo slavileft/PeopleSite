@@ -153,6 +153,10 @@ body {
     display: flex;
 }
 
+#left .message-row {
+    width: 530px;
+}
+
 #right {
     float: left;
     width: 200px;
@@ -214,6 +218,14 @@ body {
 #whole button {
     border: #333333 1px solid;
     border-radius: 4px;
+}
+
+#whole .row {
+    display: flex;
+}
+
+#whole .message-row {
+    width: 530px;
 }
 
 #footer {
