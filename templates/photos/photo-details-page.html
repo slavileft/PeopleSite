@@ -26,12 +26,9 @@
             </div>
             <p></p>
             <div class="bottom">
-                <!-- Start Like Buttons Section -->
                 <div class="actionBtns">
                     <div class="left">
-                        <!-- Start Like Button -->
                         <span class="heart">
-                                    <!-- Link to Like Path -->
 									<a href="{% url 'photo like' photo_id=object.pk %}">
                                         {% if has_user_liked_photo %}
                                             <svg style="color: red"
@@ -41,7 +38,6 @@
                                                  fill="currentColor"
                                                  class="bi bi-heart-fill"
                                                  viewBox="0 0 16 16">
-                                                <!-- Coordinate path -->
                                                 <path fill-rule="evenodd"
                                                       d="M8 1.314C12.438-3.248 23.534 4.735
                                                   8 15-7.534 4.736 3.562-3.248 8 1.314z"
@@ -56,7 +52,6 @@
                                                  role="img"
                                                  viewBox="0 0 48 48"
                                                  width="24">
-                                                <!-- Coordinate path -->
                                                 <path d="M34.6 6.1c5.7 0 10.4 5.2 10.4
                                                     11.5 0 6.8-5.9 11-11.5 16S25 41.3 24
                                                     41.9c-1.1-.7-4.7-4-9.5-8.3-5.7-5-11.5-9.2-11.5-16C3
@@ -74,17 +69,13 @@
                                         {% endif %}
                                     </a>
                         </span>
-                        <!-- End Like Button -->
                     </div>
                 </div>
 
-                <!-- Number of Likes for the Photo -->
                 <p class="likes">{{ likes_count }} likes</p>
 
-                <!-- Date of Publication or edit of the Photo -->
                 <h5 class="postTime">{{ object.publication_date_and_time }}</h5>
                 {% for comment in object.photocomment_set.all %}
-                    <!-- Start Comments Section -->
                     <div class="comments">
                         <div class="top">
                             <div class="userDetails">
@@ -92,15 +83,12 @@
                                     <div class="profilepic">
                                         <div class="profile_img">
                                             <div class="image">
-                                                <!-- User Profile Image -->
                                                 <img src="{{ comment.person.profile_picture.url }}" alt="img8">
                                             </div>
                                         </div>
                                     </div>
                                     <p>
-                                        <!-- Link to User Profile Details Page-->
                                         <a href="{% url 'user details' pk=comment.person.pk %}">{{ comment.person }}</a>
-                                        <!-- User Comment -->
                                         - {{ comment.text }}
                                     </p>
                                 </div>
@@ -108,7 +96,6 @@
                             </div>
                         </div>
                     </div>
-                    <!-- End Comments Section -->
                 {% endfor %}
             </div>
             <form action="{% url 'photo comment' photo_id=object.pk %}" method="post">

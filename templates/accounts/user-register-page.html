@@ -1,7 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block page_content %}
-    <!-- start container -->
     <div id="container">
         <div id="whole">
             <h1>Accounts Register</h1>
@@ -11,34 +10,42 @@
                 <p>
                     {{ form.username.label }}
                     {{ form.username }}
+                    {{ form.username.errors }}
                 </p>
                 <p>
                     {{ form.email.label }}
                     {{ form.email }}
+                    {{ form.email.errors }}
                 </p>
                 <p>
                     {{ form.first_name.label }}
                     {{ form.first_name }}
+                    {{ form.first_name.errors }}
                 </p>
                 <p>
                     {{ form.last_name.label }}
                     {{ form.last_name }}
+                    {{ form.last_name.errors }}
                 </p>
                 <p>
                     {{ form.age.label }}
                     {{ form.age }}
+                    {{ form.age.errors }}
                 </p>
                 <p>
                     {{ form.gender.label }}
                     {{ form.gender }}
+                    {{ form.gender.errors }}
                 </p>
                 <p>
                     {{ form.password1.label }}
                     {{ form.password1 }}
+                    {{ form.password1.errors }}
                 </p>
                 <p>
                     {{ form.password2.label }}
                     {{ form.password2 }}
+                    {{ form.password2.errors }}
                 </p>
                 <button type="submit">Register</button>
                 {% csrf_token %}
@@ -46,5 +53,4 @@
             </body>
         </div>
     </div>
-    <!-- end container -->
 {% endblock %}

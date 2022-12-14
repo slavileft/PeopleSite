@@ -3,14 +3,17 @@
         <p>
             {{ search_form.age_lower.label }}
             {{ search_form.age_lower }}
+            {{ search_form.age_lower.errors }}
         </p>
         <p>
             {{ search_form.age_higher.label }}
             {{ search_form.age_higher }}
+            {{ search_form.age_higher.errors }}
         </p>
         <p>
             {{ search_form.gender.label }}
             {{ search_form.gender }}
+            {{ search_form.gender.errors }}
         </p>
         <p align="right">
             <button>Search Profiles</button> <a href="{% url 'index' %}">Clear filter</a>
