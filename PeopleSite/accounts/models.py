@@ -23,7 +23,7 @@ class DdUser(AbstractUser):
     first_name = models.CharField(
         max_length=MAX_FIRST_NAME_LENGTH,
         validators=(
-            MinLengthValidator(MIN_FIRST_NAME_LENGTH),
+            MinLengthValidator(MIN_FIRST_NAME_LENGTH, message='The required name must have at least 2 letters.'),
             is_alphabetical,
         ),
         null=True,
@@ -32,7 +32,7 @@ class DdUser(AbstractUser):
     last_name = models.CharField(
         max_length=MAX_LAST_NAME_LENGTH,
         validators=(
-            MinLengthValidator(MIN_LAST_NAME_LENGTH),
+            MinLengthValidator(MIN_LAST_NAME_LENGTH, message='The required name must have at least 2 letters.'),
             is_alphabetical,
         ),
         null=True,
@@ -40,21 +40,21 @@ class DdUser(AbstractUser):
     )
     age = models.PositiveIntegerField(
         validators=(
-            MinValueValidator(MIN_AGE),
+            MinValueValidator(MIN_AGE, message='You must have at least 18 years to register in this site!'),
         ),
         null=True,
         blank=False,
     )
     height = models.FloatField(
         validators=(
-            MinValueValidator(MIN_HEIGHT),
+            MinValueValidator(MIN_HEIGHT, message='You cannot put negative value for height!'),
         ),
         null=True,
         blank=True,
     )
     weight = models.FloatField(
         validators=(
-            MinValueValidator(MIN_WEIGHT),
+            MinValueValidator(MIN_WEIGHT, message='You cannot put negative value for weight!'),
         ),
         null=True,
         blank=True,
@@ -83,4 +83,4 @@ class DdUser(AbstractUser):
     )
 
     def __str__(self):
-        return str(self.first_name) + ' ' + str(self.last_name)
+        return self.get_full_name()

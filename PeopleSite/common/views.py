@@ -20,7 +20,7 @@ def index(request):
         age_pattern_higher = search_form.cleaned_data['age_higher']
         gender_pattern = search_form.cleaned_data['gender']
 
-    people = UserModel.objects.all()
+    people = UserModel.objects.all().order_by('-pk')
 
     if age_pattern_lower or age_pattern_higher or gender_pattern:
         if not age_pattern_lower:

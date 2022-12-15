@@ -5,8 +5,6 @@ from django.dispatch import receiver
 from django.template.loader import render_to_string
 from django.utils.html import strip_tags
 
-from PeopleSite import settings
-
 UserModel = get_user_model()
 
 
@@ -20,6 +18,7 @@ def send_greeting_email(sender, instance, created, **kwargs):
         send_mail(
             subject=subject,
             message=plain_message,
-            from_email=settings.EMAIL_HOST_USER,
-            recipient_list=[to], html_message=html_message
+            from_email=None,
+            recipient_list=[to],
+            html_message=html_message,
         )

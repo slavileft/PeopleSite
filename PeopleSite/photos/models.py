@@ -29,3 +29,6 @@ class Photo(models.Model):
         null=False,
         blank=True,
     )
+
+    def __str__(self):
+        return self.description

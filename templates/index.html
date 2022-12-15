@@ -1,42 +1,38 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block page_content %}
-    <!-- start container -->
     <div id="container">
-        <!-- begin left side -->
         <div id="left">
             <h1>All profiles</h1>
             {% if user.is_authenticated %}
                 {% include 'partials/search_form.html' %}
             {% endif %}
-            <ul>
+            <div>
                 {% for object in page_obj %}
-                    <li>
-                        <p><img class="alignleft" src="{% static 'images/heart.jpg' %}" alt="heart image"/>
-                            {% if object.profile_picture.url %}
-                                <img class="alignright" width="100" src="{{ object.profile_picture.url }}"
-                                     alt="profile picture"/>
-                            {% else %}
-                                <img class="alignright" width="100" src="{% static 'images/admin.png' %}"
-                                     alt="profile picture"/>
-                            {% endif %}
-                            {% if object.get_full_name %}
-                                Person's Name: {{ object.get_full_name }}</p>
-                            {% endif %}
+                    <img class="alignleft" src="{% static 'images/heart.jpg' %}" alt="heart image"/>
+                    {% if object.profile_picture.url %}
+                        <img class="alignright" height="100" src="{{ object.profile_picture.url }}"
+                             alt="profile picture"/>
+                    {% else %}
+                        <img class="alignright" height="100" src="{% static 'images/admin.png' %}"
+                             alt="profile picture"/>
+                    {% endif %}
+                    <div id="user-data">
+                        {% if object.get_full_name %}
+                            <p>Person's Name: {{ object.get_full_name }}</p>
+                        {% endif %}
                         {% if object.age %}
                             <p>Age: {{ object.age }}</p>
                         {% endif %}
                         {% if object.gender %}
                             <p>Sex: {{ object.gender }}</p>
                         {% endif %}
-                        {% if request.user.is_authenticated %}
-                            <a href="{% url 'user details' pk=object.pk %}">
-                                <i>View Profile</i>
-                            </a>
-                        {% endif %}
-                    </li>
+                    </div>
+                    {% if request.user.is_authenticated %}
+                        <p align="right"><a href="{% url 'user details' pk=object.pk %}"><i>View Profile</i></a></p>
+                    {% endif %}
                 {% endfor %}
-            </ul>
+            </div>
             <div class="pagination">
             <span class="step-links">
                 {% if page_obj.has_previous %}

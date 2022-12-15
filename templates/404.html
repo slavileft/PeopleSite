@@ -1,8 +1,10 @@
 {% extends 'base.html' %}
-{% load static %}
 {% block page_content %}
-{#    TODO check the appearance of the 404 page #}
-    <h1>The page you are looking for doesn't exist.</h1>
-    <h3>You may have mistyped the address of the page or the page may have moved.</h3>
-    <a href="{% url 'index' %}">You can return to home page from here.</a>
+    <div id="container">
+        <div id="whole">
+            <h1>404 error page not found</h1>
+                <p>The page you are looking for doesn't exist. You may have mistyped the address of the page or the page may have moved. You can return to home page from
+                <a href="{% url 'index' %}">here&raquo;</a></p>
+        </div>
+    </div>
 {% endblock %}

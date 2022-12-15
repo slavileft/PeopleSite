@@ -4,8 +4,6 @@
     <div id="container">
         <div id="whole">
             <h1>Accounts Register</h1>
-
-            <body>
             <form method="post" action="{% url 'user register' %}">
                 <p>
                     {{ form.username.label }}
@@ -50,7 +48,6 @@
                 <button type="submit">Register</button>
                 {% csrf_token %}
             </form>
-            </body>
         </div>
     </div>
 {% endblock %}

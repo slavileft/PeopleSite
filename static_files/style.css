@@ -257,6 +257,7 @@ body {
 }
 
 div form input {
+    display: grid;
     border: #777 1px solid ;
 }
 
@@ -299,4 +300,8 @@ div form textarea {
     margin-top: 10px;
     width: 62px;
     height: 32px;
+}
+
+#user-data {
+    height: 116px;
 }
