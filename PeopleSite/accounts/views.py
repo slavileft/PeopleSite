@@ -39,7 +39,7 @@ class UserDetailsView(LoginRequiredMixin, views.DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        photos = self.object.photo_set.all()
+        photos = self.object.photo_set.all().order_by('-publication_date')
         paginator = Paginator(photos, self.photos_paginate_by)
         page_number = self.request.GET.get('page')
         page_obj = paginator.get_page(page_number)
