@@ -61,8 +61,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'PeopleSite.wsgi.application'
 
-print(os.environ.get('HOST'))
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',

@@ -32,6 +32,9 @@ class PhotoComment(models.Model):
         blank=True,
     )
 
+    def __str__(self):
+        return self.text
+
 class PhotoLike(models.Model):
     photo = models.ForeignKey(
         Photo,

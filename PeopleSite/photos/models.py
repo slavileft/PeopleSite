@@ -31,4 +31,4 @@ class Photo(models.Model):
     )
 
     def __str__(self):
-        return self.description
+        return self.description or ' '

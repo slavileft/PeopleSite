@@ -4,9 +4,7 @@
     <div id="container">
         <div id="left">
             <h1>Photo details</h1>
-            <p>
-                <a href="{% url 'user details' pk=object.person.pk %}">&laquo; Back to Profile</a>
-            </p>
+            <p><a href="{% url 'user details' pk=object.person.pk %}">&laquo; Back to Profile</a></p>
             <div>
                 <img width="500" src="{{ object.photo.url }}" alt="photo {{ object.pk }}">
                 {% if is_owner %}

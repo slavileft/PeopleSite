@@ -31,7 +31,7 @@
                 </div>
             {% endfor %}
             <p></p>
-            <form method="POST" action="{% url 'create-message' thread.pk %}">
+            <form method="POST" action="{% url 'create message' thread.pk %}">
                 {% csrf_token %}
                 {{ form }}
                 <p>

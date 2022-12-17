@@ -62,7 +62,7 @@
                 <a href="{% url 'user delete' pk=object.pk %}"><b>Delete profile</b></a>
             {% else %}
                 <div class="col-md-12 p-5">
-                    <form method="POST" action="{% url 'create-thread' pk=object.pk %}">
+                    <form method="POST" action="{% url 'create thread' pk=object.pk %}">
                         {{ thread_form.username }}
                         <button class="btn btn-light p-3" type="submit">Start a Conversation</button>
                         {% csrf_token %}
